@@ -1,1 +1,42 @@
 /* You can add global styles to this file, and also import other style files */
+html {
+  font-family: "Public Sans", sans-serif;
+  font-family: "Roboto", sans-serif;
+}
+
+body::-webkit-scrollbar {
+  display: none;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  overflow-y: auto;
+  background: #fff;
+}
+
+html,
+body {
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
+
+app-videos {
+  margin-top: 65px;
+}
+.content {
+  padding-top: 85px;
+  margin: auto;
+  max-width: 964px;
+}
+
+.avatar {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  margin-right: 4px;
+  border: solid 0.5px lightgray;
+}
+
+ul {
+  list-style-type: none;
+}

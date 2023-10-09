@@ -1,0 +1,176 @@
+.videos {
+  width: 100%;
+  height: 100%;
+  display: flex;
+}
+
+.grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: start;
+}
+
+.list {
+  width: 100%;
+}
+
+.video {
+  cursor: pointer;
+
+  margin: 8px;
+}
+
+.video:hover {
+  background-color: lightgray;
+}
+
+.list li {
+  cursor: pointer;
+}
+
+.list li:hover {
+  background-color: lightgray;
+  border-radius: 8px;
+}
+
+.active {
+  display: block;
+}
+
+.bottom {
+  margin: 8px;
+}
+.bottom-line {
+  display: flex;
+  justify-content: space-between;
+}
+.flex-child:first-child {
+  flex: 1;
+}
+.right-child {
+  align-items: center;
+  justify-content: baseline;
+}
+
+.video-preview {
+  width: 300px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+.video-list-preview {
+  width: 84px;
+  aspect-ratio: 16/9;
+  object-fit: cover;
+  border-radius: 4px;
+}
+
+
+
+li {
+  display: flex;
+  flex-direction: row;
+  margin-bottom: 8px;
+  padding: 4px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.list-child-second {
+  min-width: 220px;
+}
+
+.list-child {
+  display: flex;
+  align-items: center;
+}
+.list-date {
+  text-align: start;
+  min-width: 130px;
+}
+
+.list-image {
+  margin-right: 16px;
+}
+
+.toggle-buttons {
+  display: flex;
+  justify-content: end;
+  margin-bottom: 32px;
+}
+.square-box:first-child {
+  margin-right: 6px;
+}
+
+.square-box {
+  width: 60px;
+  height: 40px;
+  border-radius: 8px;
+  position: relative;
+  cursor: pointer;
+}
+
+.square-box .black-square {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  border-radius: 2px;
+}
+
+.square-box .top-left-square {
+  top: 10px;
+  left: 20px;
+}
+
+.square-box .top-right-square {
+  top: 10px;
+  right: 20px;
+}
+
+.square-box .bottom-left-square {
+  bottom: 10px;
+  left: 20px;
+}
+
+.square-box .bottom-right-square {
+  bottom: 10px;
+  right: 20px;
+}
+
+.square-box .gray-dots {
+  position: absolute;
+  width: 4px;
+  height: 4px;
+  border-radius: 2px;
+}
+.square-box .gray-lines {
+  position: absolute;
+  width: 18px;
+  height: 4px;
+  border-radius: 2px;
+}
+.square-box .top-left-01 {
+  top: 12px;
+  left: 18px;
+}
+.square-box .top-left-02 {
+  top: 19px;
+  left: 18px;
+}
+.square-box .top-left-03 {
+  top: 26px;
+  left: 18px;
+}
+.square-box .top-right-01 {
+  top: 12px;
+  left: 24px;
+}
+.square-box .top-right-02 {
+  top: 19px;
+  left: 24px;
+}
+.square-box .top-right-03 {
+  top: 26px;
+  left: 24px;
+}
+

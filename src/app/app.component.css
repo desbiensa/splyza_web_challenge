@@ -1,0 +1,53 @@
+.head {
+  width: 100%;
+  z-index: 99;
+  position: -webkit-sticky;
+  position: fixed;
+  height: 65px;
+  transition: 0.3s;
+  box-shadow: 0 3px 3px 0 rgba(0, 0, 0, 0.14), 0 1px 7px 0 rgba(0, 0, 0, 0.12),
+    0 3px 1px -1px rgba(0, 0, 0, 0.2);
+  background: #101243;
+}
+
+.company-logo {
+  height: 45px;
+  margin-top: 10px;
+  margin-left: 30px;
+}
+
+.avatar-header {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  margin-right: 4px;
+  border: solid 0.5px lightgray;
+  margin-right: 8px;
+}
+
+.name-header {
+  font-size: medium;
+  font-weight: bold;
+  color: white;
+}
+
+.author-logged-in {
+  position: absolute;
+  right: 30px;
+  top: 20px;
+}
+
+.back-button {
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  align-items: center;
+  margin-left: 30px;
+  margin-top: 20px;
+  cursor: pointer;
+}
+
+.back {
+  color: #fff;
+  font-size: small !important;
+}

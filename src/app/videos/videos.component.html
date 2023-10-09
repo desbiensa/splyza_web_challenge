@@ -1,0 +1,123 @@
+<div class="content">
+    <!-- These buttons are quick and dirty, as no assets were provided 
+    I deciced to use CSS and Angular to do theme -->
+  <div class="toggle-buttons">
+    <div
+      (click)="turnToGrid()"
+      class="square-box"
+      [ngStyle]="{ 'background-color': !userServices.listView ? 'gray' : 'white' }"
+    >
+      <div
+        class="black-square top-left-square"
+        [ngStyle]="{ 'background-color': !userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="black-square top-right-square"
+        [ngStyle]="{ 'background-color': !userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="black-square bottom-left-square"
+        [ngStyle]="{ 'background-color': !userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="black-square bottom-right-square"
+        [ngStyle]="{ 'background-color': !userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+    </div>
+    <div
+      (click)="turnToList()"
+      class="square-box"
+      [ngStyle]="{ 'background-color': userServices.listView ? 'gray' : 'white' }"
+    >
+      <div
+        class="gray-dots top-left-01"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="gray-lines top-right-01"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="gray-dots top-left-02"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="gray-lines top-right-02"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="gray-dots top-left-03"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+      <div
+        class="gray-lines top-right-03"
+        [ngStyle]="{ 'background-color': userServices.listView ? '#313131' : 'gray' }"
+      ></div>
+    </div>
+  </div>
+  <div class="videos">
+    <div class="grid" *ngIf="!userServices.listView">
+      <div class="video" *ngFor="let video of videos" (click)="goToPlayer(video.id)">
+        <img
+          class="video-preview"
+          src="{{ video.previewUrl }}"
+          alt="{{ video.title }}"
+        />
+        <div class="bottom">
+          <h5>{{ video.title }}</h5>
+          <div class="bottom-line">
+            <div class="flex-child left-child">
+              <span>{{
+                datePipe.transform(video.createdDate, "yyyy/MM/dd")
+              }}</span>
+            </div>
+            <div class="flex-child right-child">
+              <img
+                class="avatar"
+                src="{{ video.author.pictureUrl }}"
+                alt="{{ userServices.firstNameOnly(video.author.name) }}"
+              />
+              <span>{{ userServices.firstNameOnly(video.author.name) }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="list" *ngIf="userServices.listView">
+      <ul>
+        <li *ngFor="let video of videos" (click)="goToPlayer(video.id)">
+          <div class="list-child">
+            <div class="list-image">
+              <img
+                class="video-list-preview"
+                src="{{ video.previewUrl }}"
+                alt="{{ video.title }}"
+              />
+            </div>
+            <div class="list-title">
+              <h5>{{ video.title }}</h5>
+            </div>
+          </div>
+          <div class="list-child list-child-second">
+            <div class="bottom-line">
+              <div class="flex-child list-date">
+                <span>{{
+                  datePipe.transform(video.createdDate, "yyyy/MM/dd")
+                }}</span>
+              </div>
+              <div class="flex-child list-author">
+                <img
+                  class="avatar"
+                  src="{{ video.author.pictureUrl }}"
+                  alt="{{ video.author.name }}"
+                />
+                <span>{{ video.author.name }}</span>
+              </div>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

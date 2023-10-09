@@ -1,0 +1,113 @@
+<div class="content">
+  <div *ngIf="this.userData.name != this.videoData.author.name || this.titleEdited">
+    <h3>{{ titleToEdit }}</h3>
+  </div>
+  <div *ngIf="this.userData.name == this.videoData.author.name && !this.titleEdited" class="input-title-video">
+    <input type="text" [(ngModel)]="titleToEdit" />
+    <button class="title-button" type="button" (click)="pushTitle()">
+      Save
+    </button>
+  </div>
+  <div class="input-title"></div>
+  <div *ngIf="isLoading; else videoContent">
+    <!-- Show a loading spinner or message -->
+    Loading video...
+  </div>
+
+  <div>
+    <ng-template #videoContent>
+      <video
+        #videoPlayer
+        controls
+        width="100%"
+        (timeupdate)="onTimeUpdate(videoPlayer)"
+        crossorigin="anonymous"
+      >
+        <source [src]="videoActiveUrl" type="video/mp4" />
+        Your browser does not support the video tag.
+      </video>
+      <canvas
+        #canvas
+        id="canvas"
+        width="320"
+        height="180"
+        style="display: none"
+      ></canvas>
+    </ng-template>
+  </div>
+  <div class="row-bottom-video">
+    <div class="buttons-pair">
+      <button class="button" (click)="postReactionSnap()">
+        <img
+          class="button-item icon-button"
+          src="/assets/images/photo_camera.svg"
+          alt="snapshot"
+        />
+        SnapShot
+      </button>
+      <button class="button" (click)="postReactionStar()">
+        <img
+          class="button-item icon-button"
+          src="/assets/images/star_FILL.svg"
+          alt="snapshot"
+        />
+        Star
+      </button>
+    </div>
+    <div class="user-id">
+      <div class="flex-child list-author">
+        <img
+          class="avatar"
+          src="{{ videoData.author.pictureUrl }}"
+          alt="{{ videoData.author.name }}"
+        />
+        <span class="middle-text">{{
+          userServices.firstNameOnly(videoData.author.name)
+        }}</span>
+      </div>
+    </div>
+  </div>
+  <h5 class="title-reaction">Reactions</h5>
+  <ul>
+    <li
+      *ngFor="let reaction of reactions"
+      (click)="playVideoOnTimeFrame(reaction.timeframe)"
+    >
+      <div class="parent-reaction">
+        <div class="icons-reaction">
+          <img
+            class="icon-reation"
+            *ngIf="reaction.type == 'snapshot'"
+            src="/assets/images/photo_camera.svg"
+            alt=""
+          />
+          <img
+            class="icon-reation"
+            *ngIf="reaction.type == 'star'"
+            src="/assets/images/star_FILL.svg"
+            alt=""
+          />
+        </div>
+
+        <div class="time-stamp">
+          {{ userServices.convertTimeStamp(reaction.timeframe) }}
+        </div>
+        <span class="middle-text">{{
+          userServices.firstNameOnly(reaction.author.name)
+        }}</span>
+        <span class="middle-text" *ngIf="reaction.type == 'snapshot'"
+          >&nbsp;created a snapshot</span
+        >
+        <span class="middle-text" *ngIf="reaction.type == 'star'"
+          >&nbsp;starred a video</span
+        >
+        <img
+          *ngIf="reaction.type == 'snapshot'"
+          class="preview-reaction"
+          src="{{ reaction.imageUrl }}"
+          alt=""
+        />
+      </div>
+    </li>
+  </ul>
+</div>
