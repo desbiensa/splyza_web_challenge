@@ -8,11 +8,38 @@ import {
 import { ActivatedRoute } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger,
+} from '@angular/animations';
 
 @Component({
   selector: 'app-player',
   templateUrl: './player.component.html',
   styleUrls: ['./player.component.css'],
+  animations: [
+    trigger('sleepActive', [
+      state(
+        'active',
+        style({
+          bottom: '140px',
+          opacity: 1,
+        })
+      ),
+      state(
+        'sleep',
+        style({
+          bottom: '400px',
+          opacity: 0,
+        })
+      ),
+      transition('active => sleep', [animate('1s')]),
+      transition('sleep => active', [animate('0s')]),
+    ]),
+  ],
 })
 export class PlayerComponent implements OnInit {
   preload: string = 'auto';
@@ -32,10 +59,20 @@ export class PlayerComponent implements OnInit {
   reactions: any[] | undefined;
   videoActiveUrl: SafeResourceUrl | undefined;
   reactionsUrl!: string;
+  showIcon: boolean = false;
 
   @ViewChild('videoPlayer', { static: false })
   videoPlayer: any;
   @ViewChild('canvas') canvas!: ElementRef;
+
+  @ViewChild('starIcon') starIcon!: ElementRef;
+
+  animateIcon() {
+    this.showIcon = true;
+    setTimeout(() => {
+      this.showIcon = false;
+    }, 10);
+  }
 
   currentTime: number = 0;
   capturedFrame: any;
@@ -44,10 +81,7 @@ export class PlayerComponent implements OnInit {
     return (this.currentTime = video.currentTime);
   }
 
-  constructor(
-    private route: ActivatedRoute,
-    private sanitizer: DomSanitizer
-  ) {}
+  constructor(private route: ActivatedRoute, private sanitizer: DomSanitizer) {}
 
   ngOnInit() {
     this.itemId = this.route.snapshot.paramMap.get('itemId');
@@ -68,10 +102,6 @@ export class PlayerComponent implements OnInit {
     this.userService.apiGetter(this.userService.userUrl).subscribe((user) => {
       this.userData = user;
     });
-
-    // if (this.userData.name != this.videoData.author.name || this.titleEdited) {
-    //   this.userEditTitle = false;
-    // }
   }
 
   loadItems(url: string) {
@@ -84,7 +114,6 @@ export class PlayerComponent implements OnInit {
     const canvas: HTMLCanvasElement = this.canvas.nativeElement;
     const image = this.videoPlayer.nativeElement;
     image.crossOrigin = 'anonymous';
-    // image.src = 'http://localhost:4200/api/videos/'+ this.videoId;
     const context = canvas.getContext('2d');
     if (!context) {
       throw new Error('2D context is not supported.');
@@ -100,10 +129,11 @@ export class PlayerComponent implements OnInit {
     };
     this.userService.apiReaction(this.videoId, reactDemo);
     setTimeout(() => {
-        this.loadItems(this.reactionsUrl);
-      }, 2000);
+      this.loadItems(this.reactionsUrl);
+    }, 2000);
   }
   postReactionStar() {
+    this.animateIcon();
     const reactDemo = {
       videoId: this.videoId,
       timeframe: this.currentTime,
@@ -111,8 +141,8 @@ export class PlayerComponent implements OnInit {
     };
     this.userService.apiReaction(this.videoId, reactDemo);
     setTimeout(() => {
-        this.loadItems(this.reactionsUrl);
-      }, 2000);
+      this.loadItems(this.reactionsUrl);
+    }, 2000);
   }
 
   playVideoOnTimeFrame(time: number) {

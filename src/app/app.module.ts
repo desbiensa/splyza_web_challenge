@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { VideosComponent } from './videos/videos.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PlayerComponent } from './player/player.component';
 
 import { FormsModule } from '@angular/forms';
@@ -19,7 +20,8 @@ import { NgxCaptureModule } from 'ngx-capture';
     NgbModule,
     HttpClientModule,
     FormsModule,
-    NgxCaptureModule
+    NgxCaptureModule,
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent],

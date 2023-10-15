@@ -7,7 +7,7 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
-  justify-content: start;
+  justify-content: flex-start;
 }
 
 .list {
@@ -95,7 +95,7 @@ li {
 
 .toggle-buttons {
   display: flex;
-  justify-content: end;
+  justify-content: flex-end;
   margin-bottom: 32px;
 }
 .square-box:first-child {

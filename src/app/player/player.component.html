@@ -1,8 +1,15 @@
 <div class="content">
-  <div *ngIf="this.userData.name != this.videoData.author.name || this.titleEdited">
+  <div
+    *ngIf="this.userData.name != this.videoData.author.name || this.titleEdited"
+  >
     <h3>{{ titleToEdit }}</h3>
   </div>
-  <div *ngIf="this.userData.name == this.videoData.author.name && !this.titleEdited" class="input-title-video">
+  <div
+    *ngIf="
+      this.userData.name == this.videoData.author.name && !this.titleEdited
+    "
+    class="input-title-video"
+  >
     <input type="text" [(ngModel)]="titleToEdit" />
     <button class="title-button" type="button" (click)="pushTitle()">
       Save
@@ -14,27 +21,27 @@
     Loading video...
   </div>
 
-  <div>
-    <ng-template #videoContent>
-      <video
-        #videoPlayer
-        controls
-        width="100%"
-        (timeupdate)="onTimeUpdate(videoPlayer)"
-        crossorigin="anonymous"
-      >
-        <source [src]="videoActiveUrl" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video>
-      <canvas
-        #canvas
-        id="canvas"
-        width="320"
-        height="180"
-        style="display: none"
-      ></canvas>
-    </ng-template>
-  </div>
+  <ng-template #videoContent>
+    <video
+      #videoPlayer
+      controls
+      width="100%"
+      (timeupdate)="onTimeUpdate(videoPlayer)"
+      crossorigin="anonymous"
+    >
+      <source [src]="videoActiveUrl" type="video/mp4" />
+      Your browser does not support the video tag.
+    </video>
+    <canvas
+      #canvas
+      id="canvas"
+      width="320"
+      height="180"
+      style="display: none"
+    ></canvas>
+  </ng-template>
+
+      
   <div class="row-bottom-video">
     <div class="buttons-pair">
       <button class="button" (click)="postReactionSnap()">
@@ -67,6 +74,12 @@
       </div>
     </div>
   </div>
+  <img
+      class="star-icon"
+      [@sleepActive]="showIcon ? 'active' : 'sleep'"
+        src="/assets/images/star_FILL0.svg"
+        alt="fade out icon"
+      />
   <h5 class="title-reaction">Reactions</h5>
   <ul>
     <li

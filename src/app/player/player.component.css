@@ -34,7 +34,6 @@
 }
 
 .title-reaction {
-  margin-top: 30px;
   margin-bottom: 12px;
 }
 
@@ -90,13 +89,13 @@ li:hover {
 }
 
 input {
-  flex-grow: 1; 
-  resize: horizontal; 
-  overflow: auto; 
+  flex-grow: 1;
+  resize: horizontal;
+  overflow: auto;
   margin-right: 8px;
   padding: 8px;
   border-radius: 8px;
-  min-width: 100px; 
+  min-width: 100px;
   max-width: 684px;
 }
 
@@ -108,4 +107,11 @@ input {
   background-color: #3a3e98;
   color: #fff;
   font-weight: bold;
+}
+
+.star-icon {
+    position: relative;
+    bottom: 100px;
+    right: -93%;
+  z-index: 99;
 }
